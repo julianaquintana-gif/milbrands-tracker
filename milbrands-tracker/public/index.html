@@ -556,8 +556,8 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbygBrsBPdgmDNzu
 // ============================================================
 
 const OBJ = 25000000;
-const PROM_SABI = 48332500;
-const PROM_PABLO = 52207000;
+const PROM_SABI_DEFAULT = 46442500;
+const PROM_PABLO_DEFAULT = 55554500;
 
 const PROGRAMAS_DEFAULT = [
   {tipo:'Re',nombre:'Programa starter',obj:10,pendS:0,pendP:0},
@@ -801,11 +801,14 @@ function renderProgramas() {
 }
 
 function renderProyectado() {
-  const promTot=PROM_SABI+PROM_PABLO, pProm=promTot/OBJ*100;
+  const promSabi  = state.promSabi  || PROM_SABI_DEFAULT;
+  const promPablo = state.promPablo || PROM_PABLO_DEFAULT;
+  const promTot = promSabi + promPablo;
+  const pProm = promTot/OBJ*100;
   const pm=document.getElementById('prom-metrics');
   if(pm) pm.innerHTML=`
-    <div class="mc"><div class="mc-label">Promesa Sabi</div><div class="mc-val mc-mono" style="font-size:16px">${fmt(PROM_SABI)}</div></div>
-    <div class="mc"><div class="mc-label">Promesa Pablo</div><div class="mc-val mc-mono" style="font-size:16px">${fmt(PROM_PABLO)}</div></div>
+    <div class="mc"><div class="mc-label">Promesa Sabi</div><div class="mc-val mc-mono" style="font-size:16px">${fmt(promSabi)}</div></div>
+    <div class="mc"><div class="mc-label">Promesa Pablo</div><div class="mc-val mc-mono" style="font-size:16px">${fmt(promPablo)}</div></div>
     <div class="mc"><div class="mc-label">Total promesa CRM</div><div class="mc-val mc-mono" style="font-size:16px">${fmt(promTot)}</div><div class="mc-sub">${pProm.toFixed(0)}% del objetivo</div></div>`;
   const pb=document.getElementById('prom-bar'); if(pb) pb.style.width=Math.min(pProm,100).toFixed(1)+'%';
   const pSP=state.sabiProy/OBJ*100, pPP=state.pabloProy/OBJ*100;
@@ -814,13 +817,13 @@ function renderProyectado() {
     <div class="mc"><div class="mc-label">Proyectado confirmado</div><div class="mc-val mc-mono">${fmt(state.sabiProy)}</div>
     <div class="pb"><div class="pb-inner ${bc(pSP)}" style="width:${Math.min(pSP,100).toFixed(1)}%"></div></div>
     <div class="mc-sub">${pSP.toFixed(1)}% del objetivo</div></div>
-    <p style="font-size:11px;color:var(--text-3);margin-top:10px">Promesa CRM: ${fmt(PROM_SABI)}</p>`;
+    <p style="font-size:11px;color:var(--text-3);margin-top:10px">Promesa CRM: ${fmt(promSabi)}</p>`;
   const pp=document.getElementById('proy-pablo');
   if(pp) pp.innerHTML=`<div class="vendor-head"><div class="avatar av-p">PA</div><div class="vendor-name">Pablo</div></div>
     <div class="mc"><div class="mc-label">Proyectado confirmado</div><div class="mc-val mc-mono">${fmt(state.pabloProy)}</div>
     <div class="pb"><div class="pb-inner ${bc(pPP)}" style="width:${Math.min(pPP,100).toFixed(1)}%"></div></div>
     <div class="mc-sub">${pPP.toFixed(1)}% del objetivo</div></div>
-    <p style="font-size:11px;color:var(--text-3);margin-top:10px">Promesa CRM: ${fmt(PROM_PABLO)}</p>`;
+    <p style="font-size:11px;color:var(--text-3);margin-top:10px">Promesa CRM: ${fmt(promPablo)}</p>`;
 }
 
 function renderCarga() {
@@ -1054,6 +1057,8 @@ function applySheetData(data) {
       state.pabloUSD  = s.pabloUSD  || state.pabloUSD;
       state.sabiProy  = s.sabiProy  || state.sabiProy;
       state.pabloProy = s.pabloProy || state.pabloProy;
+      state.promSabi  = s.promSabi  || state.promSabi;
+      state.promPablo = s.promPablo || state.promPablo;
     }
 
     // ── Aplicar datos de ACADEMIA ──
