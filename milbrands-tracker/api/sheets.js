@@ -1,7 +1,7 @@
 const https = require('https');
 const url = require('url');
 
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxLJaN65v12o32yVk4gX01O86HlQyVUQt16nPlLPPzeF7T_O77Y70msx5uzNmVCyCJYjA/exec';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzARrfHTevt00eaC5hRiP-LkN1X6-0w6a6YBliFwyE7dHWHqhBIgO49ChqPUcIjsjFTCw/exec';
 
 function fetchUrl(targetUrl) {
   return new Promise((resolve, reject) => {
@@ -30,7 +30,6 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET');
   res.setHeader('Content-Type', 'application/json');
-
   try {
     const data = await fetchUrl(APPS_SCRIPT_URL);
     res.status(200).send(data);
