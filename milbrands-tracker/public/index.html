@@ -583,7 +583,7 @@ const CHECKS_DEF = [
 ];
 
 function loadState() {
-  try { const s = localStorage.getItem('mb_pipeline_mayo26'); if (s) return JSON.parse(s); } catch(e) {}
+  try { const s = localStorage.getItem('mb_pipeline_jun26'); if (s) return JSON.parse(s); } catch(e) {}
   return {
     programas: PROGRAMAS_DEFAULT.map(p => ({...p, sabi:0, pablo:0})),
     sabiARS:0, pabloARS:0, sabiUSD:0, pabloUSD:0,
@@ -604,7 +604,7 @@ function loadState() {
 
 function saveState() {
   state.ultimaActualizacion = new Date().toLocaleString('es-AR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
-  localStorage.setItem('mb_pipeline_mayo26', JSON.stringify(state));
+  localStorage.setItem('mb_pipeline_jun26', JSON.stringify(state));
   const el = document.getElementById('ultima-actualizacion');
   if (el) el.textContent = 'Actualizado: ' + state.ultimaActualizacion;
 }
@@ -918,7 +918,7 @@ function copiarResumen(){
 
 function resetData(){
   if(!confirm('¿Reiniciar todos los datos del mes?')) return;
-  localStorage.removeItem('mb_pipeline_mayo26');
+  localStorage.removeItem('mb_pipeline_jun26');
   state=loadState(); render(); renderCarga();
   alert('Datos reiniciados.');
 }
@@ -1073,7 +1073,7 @@ function applySheetData(data) {
       state.academia.diameCupos = a.diameCupos || state.academia.diameCupos;
     }
 
-    localStorage.setItem('mb_pipeline_mayo26', JSON.stringify(state));
+    localStorage.setItem('mb_pipeline_jun26', JSON.stringify(state));
     render();
     const activeTab = document.querySelector('.tab-content.active');
     if (activeTab) {
