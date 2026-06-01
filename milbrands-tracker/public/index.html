@@ -1051,26 +1051,26 @@ function applySheetData(data) {
           }
         });
       }
-      state.sabiARS   = s.sabiARS   || state.sabiARS;
-      state.pabloARS  = s.pabloARS  || state.pabloARS;
-      state.sabiUSD   = s.sabiUSD   || state.sabiUSD;
-      state.pabloUSD  = s.pabloUSD  || state.pabloUSD;
-      state.sabiProy  = s.sabiProy  || state.sabiProy;
-      state.pabloProy = s.pabloProy || state.pabloProy;
-      state.promSabi  = s.promSabi  || state.promSabi;
-      state.promPablo = s.promPablo || state.promPablo;
+      state.sabiARS   = s.sabiARS   !== undefined ? s.sabiARS   : state.sabiARS;
+      state.pabloARS  = s.pabloARS  !== undefined ? s.pabloARS  : state.pabloARS;
+      state.sabiUSD   = s.sabiUSD   !== undefined ? s.sabiUSD   : state.sabiUSD;
+      state.pabloUSD  = s.pabloUSD  !== undefined ? s.pabloUSD  : state.pabloUSD;
+      state.sabiProy  = s.sabiProy  !== undefined ? s.sabiProy  : state.sabiProy;
+      state.pabloProy = s.pabloProy !== undefined ? s.pabloProy : state.pabloProy;
+      state.promSabi  = s.promSabi  !== undefined ? s.promSabi  : state.promSabi;
+      state.promPablo = s.promPablo !== undefined ? s.promPablo : state.promPablo;
     }
 
     // ── Aplicar datos de ACADEMIA ──
     const a = data.academia;
     if (a) {
       if (!state.academia) state.academia = {};
-      state.academia.roFac      = a.roFac      || state.academia.roFac;
-      state.academia.diameFac   = a.diameFac   || state.academia.diameFac;
-      state.academia.roPend     = a.roPend     || state.academia.roPend;
-      state.academia.diamePend  = a.diamePend  || state.academia.diamePend;
-      state.academia.roCupos    = a.roCupos    || state.academia.roCupos;
-      state.academia.diameCupos = a.diameCupos || state.academia.diameCupos;
+      state.academia.roFac      = a.roFac      !== undefined ? a.roFac      : state.academia.roFac;
+      state.academia.diameFac   = a.diameFac   !== undefined ? a.diameFac   : state.academia.diameFac;
+      state.academia.roPend     = a.roPend     !== undefined ? a.roPend     : state.academia.roPend;
+      state.academia.diamePend  = a.diamePend  !== undefined ? a.diamePend  : state.academia.diamePend;
+      state.academia.roCupos    = a.roCupos    !== undefined ? a.roCupos    : state.academia.roCupos;
+      state.academia.diameCupos = a.diameCupos !== undefined ? a.diameCupos : state.academia.diameCupos;
     }
 
     localStorage.setItem('mb_pipeline_jun26', JSON.stringify(state));
