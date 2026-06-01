@@ -598,7 +598,7 @@ function loadState() {
     ],
     checks:[false,false,false,false,false,false],
     notas:[], ultimaActualizacion:null, nextOppId:7,
-    academia:{roFac:5160480,diameFac:1447680,roCupos:7,diameCupos:2,roPend:3229200,diamePend:0},
+    academia:{roFac:0,diameFac:0,roCupos:0,diameCupos:0,roPend:0,diamePend:0},
   };
 }
 
@@ -974,12 +974,12 @@ function renderAcademia(){
   document.getElementById('acad-cupos').innerHTML=`
     <div style="display:flex;flex-direction:column;gap:10px">
       <div class="mc">
-        <div class="mc-label">MMM C1</div>
+        <div class="mc-label">MMM C1 (jun)</div>
         <div class="mc-val">0 <span style="font-size:13px;font-weight:400;color:var(--text-3)">cupos</span></div>
         <div class="mc-sub">No iniciado aún</div>
       </div>
       <div class="mc">
-        <div class="mc-label">MMM C2</div>
+        <div class="mc-label">MMM C3</div>
         <div class="mc-val">${totalCupos} <span style="font-size:13px;font-weight:400;color:var(--text-3)">cupos</span></div>
         <div class="pb"><div class="pb-inner ${bc(pCupos)}" style="width:${Math.min(pCupos,100).toFixed(1)}%"></div></div>
         <div class="mc-sub">RO: ${a.roCupos} · Diame: ${a.diameCupos} · Faltan ${Math.max(OBJ_CUPOS-totalCupos,0)} para el objetivo</div>
